@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+html {
+    //font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-family: $font-family;
+}
+// $$ Titulos app
+    h1 {
+        font-size: px(1.5rem); // 18px
+    }
+    h2 {
+        font-size: px(1.16rem); // 14px
+    }
+    h3 {
+        font-size: px(1.10rem); // 13px
+    }
+    h4 {
+        font-size: px(1rem); // 12px
+    }
+    h5 {
+        font-size: px(0.917rem); // 11px
+    }
+
+    // h6 no contemplado
+
+    // $$ tipografias etc...
+
+    // $$ Text
+    .txt {
+        &-center {
+            text-align: center !important;
+        }
+        &-left {
+            text-align: left !important;
+        }
+        &-right {
+            text-align: right !important;
+        }
+        &-jutify {
+            text-align: justify;
+        }
+        &-ellipsis {
+	        @include txt-ellipsis;
+        }
+    }
+    //Texto
+    .txt{
+    // Tamaño de fuente
+    // .txt-6, .txt-8, .txt-10 ...
+      @for $i from 3 through 43 {
+              $value: $i * 2;
+              &-#{$value} {
+                  font-size: ($i * 2) + px;
+              }
+          }
+        //font-style
+        &-normal{
+            font-style: normal;
+            font-weight: normal !important;
+        }
+        &-bold{
+            font-weight: bold;
+        }
+        &-italic{
+            font-style: italic;
+        }
+        &-oblique{
+            font-style: oblique;
+        }
+        &-no-decoration{
+            text-decoration: none;
+        }
+        &-underline{
+            text-decoration: underline;
+        }
+        &-overline {
+            text-decoration: overline;
+        }
+        &-tachado {
+            text-decoration: line-through;
+        }
+    }
+    .line-height {
+        &-80 {
+            line-height: 80%;
+        }
+        &-100 {
+            line-height: 100%;
+        }
+        &-120 {
+            line-height: 120%;
+        }
+    }
+    .uppercase {
+        text-transform: uppercase;
+    }
+    .lowcase {
+        text-transform: lowercase;
+    }
+    .capitalize {
+        text-transform: capitalize;
+    }
+    .letra-capital {
+        text-transform: lowercase;
+        &:first-letter {
+            text-transform: uppercase;
+        }
+    }
+    .ellipsis {
+        @include txt-ellipsis;
+    }
+    .ellipsis-lastline {
+	    @include txt-ellipsis-lastline
+    }
+// Iconos
+/*.ico {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-family: FontAwesome;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}*/
+
+/* [class^="icon-"]:before, [class*=" icon-"]:before {
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    text-align: center;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+} */
+
+// Familia de fuentes
+.tahoma {
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+}
+
+/* @font-face {
+    font-family: Bariol;
+    font-style: normal;
+    src: url('../../fonts/Bariol.woff') format('woff');
+    font-weight: $normal;
+}
+
+@font-face {
+    font-family: BariolBold;
+    src: url('../../fonts/bariol_bold.woff') format('woff');
+    font-style: normal;
+    font-weight: $bold
+}
+
+@font-face {
+    font-family: BariolLight;
+    src: url(/../fonts/bariol_light.eot);
+    src: url(../../fonts/bariol_light.eot?) format('eot'),url(../../fonts/bariol_light.ttf) format('truetype'),url(../../fonts/bariol_light.woff) format('woff'),url(../../fonts/bariol_light.svg#bariol_lightlight) format('svg');
+    font-style: normal;
+    font-weight: $normal
+}
+
+@font-face {
+    font-family: BariolThin;
+    src: url(../../fonts/bariol_thin.eot);
+    src: url(../../fonts/bariol_thin.eot?) format('eot'),url(../../fonts/bariol_thin.ttf) format('truetype'),url(../../fonts/bariol_thin.woff) format('woff'),url(../../fonts/bariol_thin.svg#bariolthin) format('svg');
+    font-style: normal;
+    font-weight: $normal;
+} */
+
+// $ Titulos de la APP
+
+//$$ Titulares
+.title {
+    @include title-lines;
+    @include font-size (4.25rem);
+    @include tablet {
+        @include font-size(3rem);
+    }
+}
+
+.subtitle {
+    @include font-size(2rem);
+    text-transform: uppercase;
+    font-weight: $bold;
+    &.subtitle--skill {
+        @media screen and (max-width: $media-desktop - 1px) {
+            @include font-size(1.75rem);
+        }
+    }
+    &.subtitle--hobby {
+        @include font-size(1.75rem);
+        @include desktop-small {
+            @include font-size(1.33rem);
+        }
+        @include tablet {
+            @include font-size(1.85rem);
+        }
+    }
+}
+
+
+//$$ Párrafo
+.text {
+    line-height: 28px;
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+//$$ Enlaces
+
+.link {
+    @include transition(color, 0.3s, ease-out);
+    text-decoration: none;
+    &:hover {
+        color:$color-az-md;
+    }
+}

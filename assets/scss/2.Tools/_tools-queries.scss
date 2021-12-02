@@ -1,0 +1,117 @@
+// $media-desktop: 1200px;
+// $media-desktop-small: 992px;
+// $media-tablet: 768px;
+// $media-mobile-landscape: 480px;
+// $media-mobile-portrait: 320px;
+
+@mixin retina {
+    @media
+        only screen and (-webkit-min-device-pixel-ratio: 2),
+        only screen and (min--moz-device-pixel-ratio: 2),
+        only screen and (-o-min-device-pixel-ratio: 2/1),
+        only screen and (min-device-pixel-ratio: 2),
+        only screen and (min-resolution: 192dpi),
+        only screen and (min-resolution: 2dppx) {
+        @content;
+    }
+}
+
+@mixin print {
+    @media print {
+        @content;
+    }
+}
+
+@mixin aural {
+    @media aural {
+        @content;
+    }
+}
+
+@mixin mobile-small {
+    @media screen and (max-width: $media-mobile-portrait) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media screen and (max-width: $media-mobile-landscape) {
+        @content;
+    }
+}
+
+@mixin tablet-portrait {
+    @media screen and (max-width: $media-tablet-portrait) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (max-width: $media-tablet) {
+        @content;
+    }
+}
+
+@mixin desktop-small {
+    @media screen and (max-width: $media-desktop-small) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (min-width: $media-desktop) {
+        @content;
+    }
+}
+
+//---------------
+//$$ Grid table-cell
+//---------------
+
+@mixin screen-desktop {
+    @media (max-width: $desktop - 1px) {
+        @content;
+    }
+}
+// @include screen-desktop { ... }
+
+@mixin screen-desktop-small {
+    @media (max-width: $desktop-small - 1px) {
+        @content;
+    }
+}
+// @include screen-desktop-small { ... }
+
+@mixin screen-tablet {
+    @media (max-width: $tablet-landscape - 1px) {
+        @content;
+    }
+}
+// @include screen-tablet { ... }
+
+@mixin screen-mobile {
+    @media (max-width: $mobile-landscape - 1px) {
+        @content;
+    }
+}
+
+// @include screen-mobile { ... }
+
+//
+//@mixin tablet {
+//    @media screen and (min-width: $media-tablet) and (max-width: $media-desktop - 1px) {
+//        @content;
+//    }
+//}
+//
+//@mixin mobile {
+//    @media screen and (max-width: $media-mobile-portrait - 1px) {
+//        @content;
+//    }
+//}
+//
+//@mixin mobile-landscape {
+//    @media screen and (min-width: $media-mobile-portrait) and (max-width: $media-mobile-landscape - 1px) {
+//        @content;
+//    }
+//}

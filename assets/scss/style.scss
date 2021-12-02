@@ -1,0 +1,29 @@
+// Settings
+@import "1.Settings/_settings-vars.scss";
+@import "1.Settings/_settings-vars_colores.scss";
+
+// Tools
+@import "2.Tools/_tools-helper-classes.scss";
+@import "2.Tools/_tools-queries.scss";
+
+// Generic
+@import "3.Generic/generic-reset.scss";
+@import "3.Generic/generic-normalize";
+
+// Base
+
+@import "4.Base/_base-icons.scss";
+@import "4.Base/_base-font.scss";
+
+// Objects
+@import "../libs/bootstrap/scss/bootstrap-grid.scss";
+@import "../libs/bootstrap/scss/mixins/breakpoints.scss";
+@import "../libs/animate/animate";
+@import "5.Objects/_objects-genericos.scss";
+
+// Components
+@import "6.Components/_components-nav.scss";
+@import "6.Components/_components-progress-circle.scss";
+
+// Themes
+@import "7.Themes/_themes-main";

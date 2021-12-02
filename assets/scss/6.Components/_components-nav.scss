@@ -1,0 +1,122 @@
+#header-sticky-wrapper {
+  z-index: 99999;
+  position: relative;
+}
+.navbar {
+  @include box-shadow(0, 0, 4px, rgba(235,235,235,.3));
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding: px(.5rem) px(1rem);
+  background-color: $color-nav;
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between
+  }
+  .navbar__logo {
+    display: inline-block;
+    padding-top: px(.3125rem);
+    padding-bottom: px(.3125rem);
+    margin-right: px(1rem);
+    line-height: inherit;
+    white-space: nowrap;
+    &:hover {
+      animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+      perspective: 1000px;
+    }
+  }
+  .navbar__toggler {
+    display: none;
+    padding: px(1rem);
+    font-size: px(1rem);
+    text-transform: uppercase;
+    line-height: 1;
+    border: 0;
+    color:$color-bl;
+    background-color: $color-az-md;
+    cursor: pointer;
+    touch-action: manipulation;
+    box-sizing: inherit;
+    align-items: flex-start;
+    @include tablet {
+      @include border-radius(px(.5rem));
+      display: inline-block ;
+    }
+  }
+  .navbar__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-content: stretch;
+    align-items: flex-start;
+    list-style-type: none;
+    @include tablet {
+      @include opacity(0);
+      @include transition(all, 0.5s, ease);
+      visibility: hidden;
+      max-height: 0;
+      flex-direction: column;
+      justify-content: flex-start;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      &.active {
+        @include opacity(1);
+        max-height: 500px;
+        visibility: visible;
+      }
+    }
+    .navbar__list__item {
+      text-transform: uppercase;
+      padding-left: px(1rem);
+      order: 0;
+      flex: 0 1 auto;
+      align-self: auto;
+      @include tablet {
+        width: 100%;
+        padding:0;
+      }
+      .link {
+        @include transition(all, 0.3s, ease-out);
+        text-decoration: none;
+        letter-spacing: 1px;
+        padding: px(.5rem) px(1rem);
+        color:$color-bl;
+        font-weight: 300;
+        &:hover {
+          color:$color-az-md;
+        }
+        @include tablet {
+          display: block;
+          padding: px(1rem);
+        }
+      }
+    }
+  }
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+

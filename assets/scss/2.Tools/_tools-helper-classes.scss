@@ -1,0 +1,490 @@
+//@import './_responsive.scss';
+
+//$$ prevent selection
+@mixin prevent-selection {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Chrome/Safari/Opera */
+	-khtml-user-select: none; /* Konqueror */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none;
+}
+
+// @include prevent-selection
+
+//$$ border radius
+@mixin border-radius($radio) {
+	-webkit-border-radius: $radio;
+	-moz-border-radius: $radio;
+	-ms-border-radius: $radio;
+	-o-border-radius: $radio;
+	-khtml-border-radius: $radio;
+	border-radius: $radio;
+	background-clip: padding-box;
+}
+
+// @include border-radius (1rem)
+
+//$$ box-shadow
+@mixin box-shadow($top, $left, $blur, $color, $inset:'') {
+	-webkit-box-shadow: $top $left $blur $color #{$inset};
+	-moz-box-shadow: $top $left $blur $color #{$inset};
+	box-shadow: $top $left $blur $color #{$inset};
+}
+
+//Usage: @include box-shadow(0, 1px, 1px, rgba(0, 0, 0, 0.075), inset);
+
+//$$ box-shadow-none
+@mixin box-shadow-none {
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+//Usage: @include box-shadow-none;
+
+//*---------------
+//$$ transition
+//----------------*/
+
+@mixin transition($properties, $durations, $timing-function: null, $delay: null) {
+  $props: unquote($properties);
+  $durs: $durations;
+
+  -webkit-transition-property: $props;
+  -moz-transition-property: $props;
+  -ms-transition-property: $props;
+  -o-transition-property: $props;
+  transition-property: $props;
+
+  -webkit-transition-duration: $durs;
+  -moz-transition-duration: $durs;
+  -ms-transition-duration: $durs;
+  -o-transition-duration: $durs;
+  transition-duration: $durs;
+
+  @if ($timing-function) {
+	-webkit-transition-timing-function: $timing-function;
+	-moz-transition-timing-function: $timing-function;
+	-ms-transition-timing-function: $timing-function;
+	-o-transition-timing-function: $timing-function;
+	transition-timing-function: $timing-function;
+  }
+
+  @if ($delay) {
+	-webkit-transition-delay: $delay;
+	-moz-transition-delay: $delay;
+	-ms-transition-delay: $delay;
+	-o-transition-delay: $delay;
+	transition-delay: $delay;
+  }
+
+}
+
+//@include transition("background-color, margin", 0.2s);
+//@include transition ("delay", 180ms)
+
+//---------------
+//$$ Transform
+//---------------
+
+//$$ Generic transform
+@mixin transform($transforms) {
+	-moz-transform: $transforms;
+	-o-transform: $transforms;
+	-ms-transform: $transforms;
+	-webkit-transform: $transforms;
+	transform: $transforms;
+}
+
+// @include transform(propiedades)
+
+//$$ translate
+@mixin translate($x:null, $y:null) {
+	@include transform(translate($x, $y));
+}
+
+// @include translate(5%, 30px)
+
+//$$ translate eje vertical
+@mixin translateY($y) {
+	@include transform(translate(0, $y));
+}
+
+// @include translateY(30px)
+
+//$$ translate eje horizontal
+@mixin translateX($x) {
+	@include transform(translate($x, 0));
+}
+
+// @include translateX(30px)
+
+//$$ placeholder
+@mixin placeholder() {
+	&::-webkit-input-placeholder {
+		@content;
+	}
+	&:-moz-placeholder {
+		@content;
+	}
+	&:-ms-input-placeholder {
+		@content;
+	}
+	&[placeholder] {
+		@content;
+	}
+}
+
+// @include placeholder
+
+//$$ posicion del icono del botón
+@mixin icono-posicion($posicion) {
+	@if $posicion == dch {
+		padding-right: .5rem;
+	} @else if $posicion== izq {
+		padding-left: .5rem;
+	} @else {
+		color: black;
+		height: 500px;
+	}
+}
+
+// @include icono-posicion (izq)
+
+//*---------------
+// $$ Conversor de medidas
+//----------------*/
+@function decimal-round($number, $digits: 0, $mode: round) {
+	$n: 2;
+	@if type-of($number) != number {
+		@warn '#{$number} is not a number.';
+		@return $number;
+	}
+	@if type-of($digits) != number {
+		@warn '#{$digits} is not a number.';
+		@return $number;
+	} @else if not unitless($digits) {
+		@warn '#{$digits} has a unit.';
+		@return $number;
+	}
+	@for $i from 1 through $digits {
+		$n: $n * 10;
+	}
+	@if $mode == round {
+		@return round($number * $n) / $n;
+	} @else if $mode == ceil {
+		@return ceil($number * $n) / $n;
+	} @else if $mode == floor {
+		@return floor($number * $n) / $n;
+	} @else {
+		@warn '#{$mode} is undefined keyword.';
+		@return $number;
+	}
+}
+
+@function strip-unit($numero) {
+	@if type-of($numero) == 'number' and not unitless($numero) {
+		@return $numero / ($numero * 0 + 1);
+	}
+}
+
+// rem to px
+@function px($valor) {
+	$unidad: unit($valor);
+	$numero: strip-unit($valor);
+	@if ($unidad == "rem") {
+		@return round($numero * $unidad-contexto) + px;
+	}
+	@if ($unidad == "em") {
+		@return $valor
+	}
+	@error "falta la unidad";
+}
+
+// px to rem
+@function rem($valor) {
+	$unidad: unit($valor);
+	$numero: strip-unit($valor);
+	@return decimal-round($numero / $unidad-contexto) + rem;
+}
+
+//  margin: px(2em) rem(12px) px(3rem) 10px;
+
+//---------------
+//$$ Tipografia
+//---------------
+
+//$$ Font-size
+//solo con unidades rem
+@mixin font-size($size) {
+	font-size: px($size); //Fallback
+	font-size: $size;
+}
+
+//Usage: @include font-size(1rem);
+
+//$$ Ellipsis on overflow
+@mixin txt-ellipsis {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+@mixin txt-ellipsis-lastline {
+	overflow: hidden;
+	text-overflow: -o-ellipsis-lastline;
+	word-wrap: break-word;
+}
+
+//Usage: @include txt-ellipsis;
+
+//$$ Text indent
+@mixin txt-indent($space) {
+	text-indent: $space;
+	white-space: normal;
+}
+
+//Usage: @include text-indent(1rem);
+
+//---------------
+//$$ Estructura
+//---------------
+
+//$$ Disabled
+@mixin disabled {
+	pointer-events: none;
+	cursor: default !important;
+}
+
+// @include disabled;
+
+//$$ posición absoluta
+@mixin absolute($t: null, $r: null, $b: null, $l: null) {
+	position: absolute;
+	top: $t;
+	right: $r;
+	bottom: $b;
+	left: $l;
+}
+
+// @include absolute (2px, 3px, 4px, 5px)
+// @include absolute ($t:2px, $l:2px)
+
+//$$ hidden
+@mixin hidden {
+	visibility: hidden;
+	overflow: hidden;
+	width: 0;
+	height: 0;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+// @include hidden
+
+//$$ hide
+@mixin hide {
+	display: none;
+	visibility: hidden;
+	overflow: hidden;
+	width: 0;
+	height: 0;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+// @include hide
+
+//$$ size - tamaño ancho y alto
+@mixin size($w: null, $h: null) {
+	width: $w;
+	height: $h;
+}
+
+// @include size(4px, 2px)
+
+//$$ clearfix
+@mixin clearfix() {
+	zoom: 1;
+	&:before {
+		content: "";
+		display: table;
+	}
+	&:after {
+		content: " ";
+		display: table;
+		visibility: hidden;
+		clear: both;
+		font-size: 0;
+		height: 0;
+	}
+}
+
+// @include clearfix
+
+//$$ Borderbox
+@mixin border-box {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+// @include border-box;
+
+//$$ Opacity
+@mixin opacity($opacity) {
+	opacity: $opacity;
+	$opacity-ie: $opacity * 100;
+	filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+// @include opacity (0.8)
+
+//$$ cuadrado
+@mixin cuadrado($s: null) {
+	@include size ($w: $s, $h: $s)
+}
+
+// @include cuadrado(1rem)
+
+//$$ circulo
+@mixin circulo($size:null) {
+	@include cuadrado($size);
+	border-radius: px(16rem);
+}
+
+// @include circulo(1rem)
+
+//$$ Ratio
+@mixin ratio($width, $height) {
+	position: relative;
+	&:before {
+		display: block;
+		content: "";
+		width: 100%;
+		padding-top: ($height / $width) * 100%;
+	}
+	> .ratio-contenido {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
+
+// @include ratio(1rem, .5rem);
+
+@mixin bg-clip-padding-box {
+	-webkit-background-clip: padding;
+	-moz-background-clip: padding;
+	background-clip: padding-box;
+}
+
+// @include bg-clip-padding-box;
+
+//---------------
+//$$ Form
+//---------------
+@mixin appearance-none {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+// @include appearance-none;
+
+//---------------
+//$$ Currency
+//---------------
+
+@mixin currency ($currency) {
+  position: relative;
+  &:before {
+	content: quote($currency);
+	position: relative;
+	left: 0;
+  }
+}
+
+@mixin currency-eur {
+  @include currency("\20AC");
+}
+//@include currency-eur;
+
+@mixin currency-dollar {
+  @include currency("\0024");
+}
+//@include currency-dollar;
+
+@mixin currency-percent {
+  @include currency("%");
+}
+//@include currency-percent;
+
+//$$ Testing
+@mixin testing {
+	border: 1px solid red;
+	background: blue;
+}
+
+//$$ Navegadores
+
+
+// Exclusivo Google Chrome
+
+@mixin chrome {
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+	@content;
+  }
+}
+
+// Exclusivo Internet Explorer
+
+@mixin ie {
+  @media screen and (min-width:0\0) {
+	@content
+  }
+}
+
+// Exclusivo Edge
+
+@mixin edge {
+  @supports (-ms-ime-align:auto) {
+	@content
+  }
+}
+
+// Exclusivo Safari
+
+@mixin safari {
+  _::-webkit-full-page-media, _:future, :root {
+	@content
+  }
+}
+
+//$$ Personales
+
+@mixin title-lines {
+  display: inline-block;
+  position: relative;
+  margin:0;
+  padding: 5px 0;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  &:before, &:after {
+	@include absolute($l:0);
+	@include size(100%,2px);
+	content: "";
+	background: $color-az-cl;
+  }
+  &:before {
+	top:0;
+  }
+  &:after {
+	bottom:0;
+  }
+}

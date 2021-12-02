@@ -1,0 +1,171 @@
+//$$ Iconos
+
+@font-face {
+  font-style: normal;
+  font-family: "fontello";
+  font-weight: normal;
+  src: url("fonts/fontello.eot?17605846");
+  src: url("fonts/fontello.eot?17605846#iefix") format("embedded-opentype"),
+    url("fonts/fontello.woff2?17605846") format("woff2"),
+    url("fonts/fontello.woff?17605846") format("woff"),
+    url("fonts/fontello.ttf?17605846") format("truetype"),
+    url("fonts/fontello.svg?17605846#fontello") format("svg");
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.svg?17605846#fontello') format('svg');
+  }
+}
+*/
+
+[class^="icon-"],
+[class*=" icon-"] {
+  &:before {
+    display: inline-block;
+    margin-right: 0.2em;
+
+    /* Animation center compensation - margins should be symmetric */
+    /* remove if not needed */
+    margin-left: 0.2em;
+    width: 1em;
+    text-decoration: inherit;
+    text-transform: none;
+    font-style: normal;
+    font-family: fontello;
+
+    /* fix buttons height, for twitter bootstrap */
+    line-height: 1em;
+    font-weight: normal;
+    /* opacity: .8; */
+
+    /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    speak: none;
+    text-align: center;
+
+    /* you can be more comfortable with increased icons size */
+    /* font-size: 120%; */
+
+    /* Font smoothing. That was taken from TWBS */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Uncomment for 3D effect */
+    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+  }
+}
+
+.icon-html5 {
+  &:before {
+    content: "\e800";
+  }
+}
+.icon-css3 {
+  &:before {
+    content: "\e801";
+  }
+}
+.icon-jquery {
+  &:before {
+    content: "\e802";
+  }
+}
+.icon-javascript {
+  &:before {
+    content: "\e803";
+  }
+}
+.icon-sass {
+  &:before {
+    content: "\e804";
+  }
+}
+.icon-photoshop {
+  &:before {
+    content: "\e805";
+  }
+}
+.icon-w3c {
+  &:before {
+    content: "\e806";
+  }
+}
+.icon-atm {
+  &:before {
+    content: "\e807";
+  }
+}
+.icon-bootstrap {
+  &:before {
+    content: "\e808";
+  }
+}
+.icon-pug {
+  &:before {
+    content: "\e809";
+  }
+}
+.icon-spin6 {
+  &:before {
+    content: "\e839";
+  }
+}
+.icon-firefox {
+  &:before {
+    content: "\e840";
+  }
+}
+.icon-chrome {
+  &:before {
+    content: "\e841";
+  }
+}
+.icon-ie {
+  &:before {
+    content: "\e843";
+  }
+}
+.icon-angle-left {
+  &:before {
+    content: "\f104";
+  }
+}
+.icon-angle-right {
+  &:before {
+    content: "\f105";
+  }
+}
+.icon-angle-up {
+  &:before {
+    content: "\f106";
+  }
+}
+.icon-angle-down {
+  &:before {
+    content: "\f107";
+  }
+}
+.icon-github {
+  &:before {
+    content: "\f113";
+  }
+}
+.icon-wordpress {
+  &:before {
+    content: "\f19a";
+  }
+}
+.icon-file-code {
+  &:before {
+    content: "\f1c9";
+  }
+}
+.icon-git {
+  &:before {
+    content: "\f1d3";
+  }
+}

@@ -1,0 +1,53 @@
+//@import './_vars_colores.scss';
+//@import './_vars_rwd.scss';
+
+// unidades de contexto
+$unidad-contexto: 12;
+
+// Vars Grid
+$grid-cols: 12;
+$desktop: 1200px;
+$desktop-small: 992px;
+$tablet-landscape: 768px;
+$tablet-portrait: 560px;
+$mobile-landscape: 480px;
+$mobile-portrait: 100%;
+
+// breakpoints
+$media-desktop: 1200px;
+$media-desktop-small: 992px;
+$media-tablet: 768px;
+$media-tablet-portrait: 576px;
+$media-mobile-landscape: 480px;
+$media-mobile-portrait: 320px;
+
+//Fonts
+$font-family: 'Open Sans', sans-serif;
+$bold: 700;
+$regular: 400;
+$normal: 400;
+//$font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+//$font-normal: 1rem;
+//$font-small: 80%;
+//$font-big: 120%;
+
+// $$ altura y ancho base de generación de clases
+                // base de porcentaje
+                // de 5 en 5  .- 5 y 20
+                // de 4 en 4  .- 4 y 25
+                // de 3 en 3  .- 3 y 33 // se queda en 99%
+                // de 2 en 2  .- 2 y 50
+                // de 1 en 1  .- 1 y 100
+                //ancho
+$porcentaje-w : 5; // salto de porcentaje de n en n
+$porcentaje-w-fin : 20; // numero de reglas a generar * 10
+
+                // alto
+$porcentaje-h : 5; // salto de porcentaje de n en n
+$porcentaje-h-fin : 20; // numero de reglas a generar * 10
+
+//border
+//$borderDef: 1px solid $color-gr-md;
+
+// Altura del footer
+$footer-height: 80px;

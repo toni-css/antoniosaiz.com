@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- By Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL -->
+<svg width="38" stroke="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38" height="38">
+ <g fill-rule="evenodd" fill="none">
+  <g stroke-width="2" transform="translate(1 1)">
+   <circle cy="18" cx="18" r="18" stroke-opacity=".5"/>
+   <path d="m36 18c0-9.94-8.06-18-18-18">
+    <animateTransform from="0 18 18" repeatCount="indefinite" attributeName="transform" to="360 18 18" dur="1s" type="rotate"/>
+   </path>
+  </g>
+ </g>
+</svg>
