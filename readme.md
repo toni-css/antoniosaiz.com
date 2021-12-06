@@ -1,7 +1,7 @@
 # Antonio Saiz - Web Resume
 
 <p align="center">
-    <img src="http://www.antoniosaiz.com/media/img/me.png">	
+    <img src="http://www.antoniosaiz.com/media/img/me.jpg">	
 </p>
 
 <p> Website personal / currículum de Antonio Saiz</p>
